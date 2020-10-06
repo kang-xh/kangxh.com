@@ -1,0 +1,29 @@
+{
+    "scenarios":
+    [
+        {
+            "title"     : "ADFS",
+            "details"   : "Sign in from fs.kangxh.com using OnPrem AD Identity, AD FS server need to be started before Sign in",
+            "button"    : "Sign In",
+            "url"       : "#"
+        },
+        {
+            "title"     : "ADFS Extend",
+            "details"   : "Architecture to implement secure hybrid infrastructure to extend your OnPrem domain system to Azure",
+            "button"    : "View Doc",
+            "url"       : "https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/identity/adfs"
+        },
+        {
+            "title"     : "Azure AD",
+            "details"   : "kangxh.com has synced AzureAD OU to AAD. Users in that OU can Sign in suing AAD without boot local DC",
+            "button"    : "Sign In",
+            "url"       : "#"
+        },
+        {
+            "title"     : "Web APP",
+            "details"   : "Enterprise App need to read Secrets during runtime. Use  SPN or Managed ID with KeyVault for secure control",
+            "button"    : "Get Secret",
+            "url"       : "#"
+        }
+    ]
+}

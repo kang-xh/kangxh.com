@@ -1,0 +1,29 @@
+{
+    "scenarios":
+    [
+        {
+            "title"     : "Blob SAS ",
+            "details"   : "Block Blob is idea for save block content like image and videos. Capture a image using local camera and upload using SAS for security control",
+            "button"    : "Take Picture",
+            "url"       : "#"
+        },
+        {
+            "title"     : "Blob Function ",
+            "details"   : "App service, like Functions can be integrated with Storage for serverless automation. built in triggers to kick off business logic",
+            "button"    : "Take Picture",
+            "url"       : "#"
+        },        
+        {
+            "title"     : "Blob SAS ",
+            "details"   : "Network connectiity from China to Global cloud always be a hot topic under security and complainace. Try ER with China Express",
+            "button"    : "View Doc",
+            "url"       : "#"
+        },
+        {
+            "title"     : "VWAN ",
+            "details"   : "Virtual WAN is great to take advantage for Azure global footprint. In China, with limited infrastructure, can be used to bridge upto 4000 offices",
+            "button"    : "View Doc",
+            "url"       : "#"
+        }
+    ]
+}

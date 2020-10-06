@@ -1,0 +1,89 @@
+{
+    "apps":
+    [
+        {
+            "title":"kangxh.com",
+            "ico":"icon-documents",
+            "description":"The web itself is  hosted on AKS. Previously in App Service. Moved to Container to save cost and better portability ",
+            "url":"#"
+        },
+        {
+            "title":"Azure Vote",
+            "ico":"icon-laptop",
+            "description":"Sample web application deployed on AKS. scalable front tier with Redis cache service. Expose with Ingress Controoler",
+            "url":"#"
+        },
+        {
+            "title":"TaskAPI",
+            "ico":"icon-server",
+            "description":"Sample API server without backed database tier. Explose with ingress controller and manamged by APIM with AAD protect",
+            "url":"#"
+        },
+        {
+            "title":"OCR in Container",
+            "ico":"icon-money",
+            "description":"OCR labeltool on AKS with API call to Azure SEA Cognative Service. OCR API server not in AKS due to limited resource",
+            "url":"#"
+        }
+    ],
+    "projects":
+    [
+        {
+            "title":"K8S App to AKS",
+            "image":"images/2019-aks.jpg",
+            "category":"2019, FSI, App Mordenization",
+            "url":"#"
+        },
+        {
+            "title":"VDC Foundation",
+            "image":"images/2019-ecp.jpg",
+            "category":"2019, O&G, Control Plane",
+            "url":"#"
+        },
+        {
+            "title":"Oracle ExaData Migration",
+            "image":"images/2020-oracle.jpg",
+            "category":"2020, CPG, Workload Migration",
+            "url":"#"
+        },
+        {
+            "title":"API App to AKS",
+            "image":"images/2020-aks.jpg",
+            "category":"2020, O&G, APIM + AKS Integration",
+            "url":"#"
+        },
+        {
+            "title":"Common Data Model",
+            "image":"images/2020-cdm.jpg",
+            "category":"2020, CPG, Data Platform for Retail",
+            "url":"#"
+        }
+    ],
+    "gitrepos":
+    [
+        {
+            "title":"PoC with AKS + APIM",
+            "image":"images/2020-apim-aks.jpg",
+            "date":"2020-03-01",
+            "type":"PoC",
+            "description":"Using aks as backed server to handle API calles redirected by APIM. it is actually two seperated components, no much integration task between",
+            "url":"http://github.com/kang-xh/poc-aks"
+        },
+        {
+            "title":"Oracle ExaData Migration",
+            "image":"images/2020-rac.jpg",
+            "date":"2020-02-01",
+            "type":"PoC",
+            "description":"Oracle RAC server onprem migration is conflex as oracle does not certify any RAC on cloud except OCI. It is more political than technical. Anyway, testing M series VM with FlashGrid",
+            "url":"http://github.com/kang-xh/poc-flashgrid-mc"
+        },
+        {
+            "title":"Python Flask in Container",
+            "image":"images/2020-kangxh.jpg",
+            "date":"2020-04-01",
+            "type":"Study",
+            "description":"Python Learning project. Practice to run Python Flask App in AKS with Azure Resources to keep state, Azure File, CosmosDB, EventHub, etc",
+            "url":"http://github.com/kang-xh/py-kangxh.com"
+        }
+    ]
+}
