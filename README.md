@@ -11,7 +11,8 @@
 
 # Web
 
-    1. Web site hosted on AKS container 
-    2. Static content saved in Azure File 
+    1. Use kangxhvmsea-dc to develop web site in WSL2
+    2. Web site hosted on AKS container 
+    3. Static content saved in Azure File 
 
 # Architecture
