@@ -3,19 +3,19 @@ from flask import render_template
 from flask import request
 
 import os
-
 import json
 from string import Template 
+
+# switch current working path to the location of main.py
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 if ("AZUREFILE" in os.environ and os.environ['AZUREFILE']):
     app = Flask(__name__, static_url_path="/", static_folder= os.environ['AZUREFILE'] + "/static")
     dynamicPath = os.environ['AZUREFILE'] + "/dynamic"
     print("Running env is on Azure")
 else:
-    app = Flask(__name__, static_url_path="/", static_folder="/app/static")
-    dynamicPath = "./dynamic"
-
-
+    app = Flask(__name__, static_url_path="", static_folder= os.getcwd()+"/static")
+    dynamicPath = os.getcwd() + "/dynamic"
 
 @app.route('/')
 @app.route('/index')
