@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kangzianweb-deployment
+  namespace: web
+  labels:
+    app: kangzianweb
+spec:
+  selector:
+    matchLabels:
+      app: kangzianweb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kangzianweb
+  template:
+    metadata:
+      labels:
+        app: kangzianweb
+    spec:
+      containers:
+      - name: kangzianweb
+        image: kangxhacrsea.azurecr.io/ibean.org
+        env:
+          - name: AZUREFILE
+            value: "/mnt/azure"
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 200m
+        volumeMounts:
+        - name: azure
+          mountPath: /mnt/azure
+      volumes:
+      - name: azure
+        azureFile:
+          secretName: kangzianweb-secret
+          shareName: ibean
+          readOnly: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: web
+  name: kangzianweb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: kangzianweb

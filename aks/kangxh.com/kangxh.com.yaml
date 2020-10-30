@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kangxhweb-deployment
+  namespace: web
+  labels:
+    app: kangxhweb
+spec:
+  selector:
+    matchLabels:
+      app: kangxhweb
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kangxhweb
+  template:
+    metadata:
+      labels:
+        app: kangxhweb
+    spec:
+      containers:
+      - name: kangxhweb
+        image: kangxhacrsea.azurecr.io/kangxh.com
+        env:
+          - name: AZUREFILE
+            value: "/mnt/azure"
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+          limits:
+            cpu: 200m
+        volumeMounts:
+        - name: azure
+          mountPath: /mnt/azure
+      volumes:
+      - name: azure
+        azureFile:
+          secretName: kangxhsaseaweb-secret
+          shareName: web-kangxh
+          readOnly: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: web
+  name: kangxhweb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: kangxhweb
