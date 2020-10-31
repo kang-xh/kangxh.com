@@ -1,7 +1,7 @@
 # Deploy ibean.org
 
 export SA_KEY=ABCDABCDABCDABCDABCDABCDABCD  
-export SA_NAME=kangzianweb
+export SA_NAME=kangxhsaseaweb
 
 az acr login --name kangxhacrsea
 az acr import --name kangxhacrsea --source docker.io/kangxh/ibean.org --image ibean.org:latest
