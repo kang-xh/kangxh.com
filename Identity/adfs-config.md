@@ -1,6 +1,7 @@
 # Install ADFS
 
     1. install ADFS and config
+    
         - farm: fs.kangxh.com
         - cert: *.kangxh.com
         - account: kangxh
