@@ -37,7 +37,7 @@ spec:
       volumes:
       - name: azure
         azureFile:
-          secretName: kangxhsaseaweb-secret
+          secretName: kangxhsasea-secret
           shareName: web-kangxh
           readOnly: false
 ---
