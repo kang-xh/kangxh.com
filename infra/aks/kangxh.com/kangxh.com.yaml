@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kangxhweb-deployment
-  namespace: web
   labels:
     app: kangxhweb
 spec:
@@ -44,7 +43,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: web
   name: kangxhweb
 spec:
   type: LoadBalancer
