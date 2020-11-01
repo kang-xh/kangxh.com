@@ -16,3 +16,5 @@
     3. Static content saved in Azure File 
 
 # Architecture
+
+![architecture](infra/kangxh.com-arch.png)
