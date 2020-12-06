@@ -9,9 +9,6 @@ spec:
     matchLabels:
       app: kangzianweb
   replicas: 1
-  selector:
-    matchLabels:
-      app: kangzianweb
   template:
     metadata:
       labels:
@@ -28,8 +25,10 @@ spec:
         resources:
           requests:
             cpu: 100m
+            memory: 100Mi
           limits:
             cpu: 200m
+            memory: 200Mi
         volumeMounts:
         - name: azure
           mountPath: /mnt/azure
