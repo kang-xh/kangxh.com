@@ -20,7 +20,7 @@ else:
 if ("LOCATION" in os.environ and os.environ['LOCATION']):
     location = os.environ['LOCATION']
 else:
-    location = "KangXH-"
+    location = "KangXH"
 
 @app.route('/')
 @app.route('/index')

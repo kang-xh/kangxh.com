@@ -25,7 +25,8 @@
     SUBNET=$(az network vnet subnet show --resource-group MSDN-RG-Kangxh-Core --vnet-name kangxhvnetsea --name aks --query id -o tsv)
     PIP=$(az network public-ip show --resource-group  MSDN-RG-Kangxh-AKS --name kangxhpipsea-aks --query id -o tsv)
 
-    # Create AKS
+    # Create AKS, --node-resource-group is not supported in China yet.
+    
     az aks create --resource-group MSDN-RG-Kangxh-AKS \
         --name kangxhakssea \
         --ssh-key-value  /mnt/c/kangxh/AzureLabs/SSHKey/common/id_rsa.pub \
@@ -41,7 +42,6 @@
         --service-cidr   192.168.0.0/24 \
         --dns-service-ip 192.168.0.10 \
         --load-balancer-outbound-ips $PIP \
-        --node-resource-group MSDN-RG-Kangxh-AKS-Node \
         --nodepool-name b2pool \
         --node-vm-size Standard_B2s \
         --nodepool-labels sku=b2vm \
@@ -86,3 +86,17 @@
 
     to reduce complexity, ingress controller is not used. 
     service exposed via public ip address.
+
+## Deploy kangxh.com 
+
+export SA_KEY=u8q18+A3xmibZ3LIP
+export SA_NAME=kangxhsasea
+
+kubectl create ns web
+
+az acr login --name kangxhacrsea
+az acr import --name kangxhacrsea --source docker.io/kangxh/kangxh.com:latest --image kangxh.com:latest
+
+kubectl create secret generic kangxhsasea-secret --from-literal=azurestorageaccountname=$SA_NAME --from-literal=azurestorageaccountkey=$SA_KEY
+
+kubectl apply -f kangxh.com.yaml
