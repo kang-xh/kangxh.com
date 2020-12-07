@@ -20,6 +20,8 @@ spec:
         env:
           - name: AZUREFILE
             value: "/mnt/azure"
+          - name: LOCATION
+            value: "KangXH-SEA"
         ports:
         - containerPort: 80
         resources:

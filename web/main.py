@@ -17,6 +17,11 @@ else:
     app = Flask(__name__, static_url_path="", static_folder= os.getcwd()+"/static")
     dynamicPath = os.getcwd() + "/dynamic"
 
+if ("LOCATION" in os.environ and os.environ['LOCATION']):
+    location = os.environ['LOCATION']
+else:
+    location = "KangXH-"
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -24,7 +29,7 @@ def index():
         indexStream = indexJson.read()
 
     indexConfig = json.loads(indexStream)
-    return render_template('index.html', title='kangxh@Azure', apps = indexConfig["apps"], projects = indexConfig["projects"], gitrepos = indexConfig["gitrepos"])
+    return render_template('index.html', title='kangxh@Azure', name = location, apps = indexConfig["apps"], projects = indexConfig["projects"], gitrepos = indexConfig["gitrepos"])
 
 @app.route('/identity')
 @app.route('/iaas')
