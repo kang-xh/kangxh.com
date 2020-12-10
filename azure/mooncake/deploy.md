@@ -25,7 +25,7 @@
     SUBNET=$(az network vnet subnet show --resource-group mc-rg-Kangxh-Core --vnet-name kangxhvnetmc --name aks --query id -o tsv)
     PIP=$(az network public-ip show --resource-group  mc-rg-Kangxh-AKS --name kangxhpipmc-aks --query id -o tsv)
 
-    # Create AKS
+    # Create AKS, --node-resource-group not supported
     az aks create --resource-group mc-rg-Kangxh-AKS \
         --name kangxhaksmc \
         --ssh-key-value  /mnt/c/kangxh/AzureLabs/SSHKey/common/id_rsa.pub \
@@ -41,7 +41,6 @@
         --service-cidr   192.168.0.0/24 \
         --dns-service-ip 192.168.0.10 \
         --load-balancer-outbound-ips $PIP \
-        --node-resource-group mc-rg-Kangxh-AKS-Node \
         --nodepool-name b2pool \
         --node-vm-size Standard_B2s \
         --nodepool-labels sku=b2vm \
@@ -59,22 +58,8 @@
         --node-osdisk-size 30 \
         --node-count 1
 
-    # remove B4 node pool.
-    az aks nodepool delete --resource-group mc-rg-Kangxh-AKS  --cluster-name kangxhaksmc --name b4pool
-
     # donwload kubectl credential
     az aks get-credentials --resource-group mc-rg-Kangxh-AKS  --name kangxhaksmc
-
-    # Update b2 & b4 node pool. b2 will run most of time to host web
-    az aks nodepool update --cluster-name kangxhaksmc \
-                        --name b2pool \
-                        --resource-group mc-rg-Kangxh-AKS  \
-                        --max-count 3 \
-                        --min-count 1 \
-                        --mode System 
-
-    # scale to min size to save cost.
-    az aks nodepool scale --cluster-name kangxhaksmc --resource-group mc-rg-Kangxh-AKS  --name b2pool --node-count 1
 
     # upgrade aks
     az aks get-upgrades --resource-group mc-rg-Kangxh-AKS  --name kangxhaksmc 
