@@ -75,7 +75,7 @@
 ## Deploy kangxh.com 
 
 export SA_KEY=u8q18+A3xmibZ3LIP
-export SA_NAME=kangxhsamc
+export SA_NAME=kangxhsaea
 
 kubectl create ns web
 

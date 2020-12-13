@@ -16,13 +16,13 @@ spec:
     spec:
       containers:
       - name: kangxhweb
-        image: kangxhacrsea.azurecr.io/kangxh.com:latest
+        image: kangxhacrea.azurecr.io/kangxh.com:latest
         imagePullPolicy: Always
         env:
           - name: AZUREFILE
             value: "/mnt/azure"
           - name: LOCATION
-            value: "KangXH-SEA"
+            value: "KangXH"
         ports:
         - containerPort: 80
         resources:
@@ -38,7 +38,7 @@ spec:
       volumes:
       - name: azure
         azureFile:
-          secretName: kangxhsasea-secret
+          secretName: kangxhsaea-secret
           shareName: web-kangxh
           readOnly: false
 ---

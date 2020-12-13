@@ -35,4 +35,4 @@
 
 # Architecture
 
-![architecture](infra/kangxh.com-arch.png)
+![architecture](azure/kangxh.com-arch.png)
