@@ -8,7 +8,7 @@
 ### Resource management with SPN
 
     az cloud set --name AzureCloud
-    az login --service-principal -u f9ac5c9b-9565-4983-a360-7d623432fd34 -p ./az-cli-spn-allenk-2037.pem --tenant microsoft.onmicrosoft.com
+    az login --service-principal -u 784f9901-27e9-4a2c-9225-b94112269b0d -p ./az-cli-spn-allenk-2037.pem --tenant microsoft.onmicrosoft.com
 
 ### Deploy AKS
 
@@ -82,7 +82,7 @@
 
     az acr login --name kangxhacrea
 
-    az acr import --name kangxhacrsea --source docker.io/kangzian/ibean.org --image ibean.org:latest
+    az acr import --name kangxhacrea --resource-group MSFT-RG-Kangxh-AKS --source docker.io/kangzian/ibean.org --image ibean.org:latest 
     kubectl apply -f ibean.org.yaml
 
 ##### jenkins

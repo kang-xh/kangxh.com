@@ -16,10 +16,12 @@ spec:
     spec:
       containers:
       - name: kangzianweb
-        image: kangxhacrsea.azurecr.io/ibean.org
+        image: kangxhacrea.azurecr.io/ibean.org
         env:
           - name: AZUREFILE
             value: "/mnt/azure"
+          - name: LOCATION
+            value: "MICHAEL"
         ports:
         - containerPort: 80
         resources:
@@ -35,7 +37,7 @@ spec:
       volumes:
       - name: azure
         azureFile:
-          secretName: kangxhsasea-secret
+          secretName: kangxhsaea-secret
           shareName: web-kangzian
           readOnly: false
 ---
