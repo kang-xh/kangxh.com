@@ -5,25 +5,16 @@
     - AKS as core infrastructure for workload host
     - VM only used for learning and management
 
-### resource management with SPN
+### Resource management with SPN
 
-    cd /mnt/c/kangxh/AzureLabs/Certs/
     az cloud set --name AzureCloud
     az login --service-principal -u f9ac5c9b-9565-4983-a360-7d623432fd34 -p ./az-cli-spn-allenk-2037.pem --tenant microsoft.onmicrosoft.com
 
 ### Deploy AKS
 
-####
-
-
-
-## setup environment
-
-    az configure --default group=MSFT-RG-Kangxh-Core
     az configure --default location=eastasia
 
-## create aks
-
+#### create aks
 
     az extension add --name aks-preview
 
@@ -70,49 +61,35 @@
         --node-osdisk-size 30 \
         --node-count 1
 
-    # remove B4 node pool.
-    az aks nodepool delete --resource-group MSFT-RG-Kangxh-AKS  --cluster-name kangxhaksea --name b4pool
-
     # donwload kubectl credential
     az aks get-credentials --resource-group MSFT-RG-Kangxh-AKS  --name kangxhaksea
 
-    # Update b2 & b4 node pool. b2 will run most of time to host web
-    az aks nodepool update --cluster-name kangxhaksea \
-                        --name b2pool \
-                        --resource-group MSFT-RG-Kangxh-AKS  \
-                        --max-count 3 \
-                        --min-count 1 \
-                        --mode System 
+#### deploy application to aks
 
-    # scale to min size to save cost.
-    az aks nodepool scale --cluster-name kangxhaksea --resource-group MSFT-RG-Kangxh-AKS  --name b2pool --node-count 1
+    export SA_KEY=ABCDABCDABCDABCDABCDABCDABCD  
+    export SA_NAME=kangxhsaea
 
-    # upgrade aks
-    az aks get-upgrades --resource-group MSFT-RG-Kangxh-AKS  --name kangxhaksea 
-    az aks upgrade --resource-group MSFT-RG-Kangxh-AKS  --name kangxhaksea --kubernetes-version 1.16.7
+    kubectl create secret generic kangxhsaea-secret --from-literal=azurestorageaccountname=$SA_NAME --from-literal=azurestorageaccountkey=$SA_KEY 
 
-    # ensure the Mananged Identity has Contributor access to AKS and AKS Resources group.
+##### kangxh.com
 
+    az acr login --name kangxhacrea
 
+    az acr import --name kangxhacrsea --source docker.io/kangxh/kangxh.com --image ibean.org:latest
+    kubectl apply -f ibean.org.yaml
 
-    # Deploy ibean.org
+##### ibean.org
 
-export SA_KEY=ABCDABCDABCDABCDABCDABCDABCD  
-export SA_NAME=kangxhsaseaweb
+    az acr login --name kangxhacrea
 
-az acr login --name kangxhacrsea
-az acr import --name kangxhacrsea --source docker.io/kangxh/ibean.org --image ibean.org:latest
+    az acr import --name kangxhacrsea --source docker.io/kangzian/ibean.org --image ibean.org:latest
+    kubectl apply -f ibean.org.yaml
 
-kubectl create secret generic kangxhsasea-secret --from-literal=azurestorageaccountname=$SA_NAME --from-literal=azurestorageaccountkey=$SA_KEY -n web
-
-kubectl apply -f ibean.org.yaml
-
- # jenkins storage  
+##### jenkins
 
     use file share as jenkins storage. as the default access level is 0755, create PV to change it to 0777  
 
-    kubectl apply -f jenkins.yaml  
-
-# Jenkins Admin  
-
+    kubectl apply -f jenkins.account.yaml
+    kubectl apply -f jenkins.pv.yaml
+    kubectl apply -f jenkins.yaml
     kubectl exec jenkins-5787bd657f-8hrr9 -- cat /var/jenkins_home/secrets/initialAdminPassword
