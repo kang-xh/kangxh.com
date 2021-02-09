@@ -45,7 +45,7 @@ spec:
     - ReadWriteMany
   storageClassName: azurefile
   azureFile:
-    secretName: kangxhsasea-secret
+    secretName: kangxhsaea-secret
     shareName: vol-jenkins
     readOnly: false
   mountOptions:
@@ -71,11 +71,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: jenkins-svc
+  name: jenkins
 spec:
-  ports:
-    - port: 80
-      targetPort: 8080
+  type: NodePort
   selector:
     app: jenkins
-  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080

@@ -10,29 +10,30 @@
     admin: kang_xh@hotmail.com
     usage: host personal data, BCDR
     
-    MC-CSU-ALLENK
-    admin: allenk@ftachina.partner.onmschina.cn
-    usage: necessary resource in China, mainly for local access accelerate. 
-
 ## naming convension
 
-    PROJECT|Resource|Region|Usage[option]
+    PROJECT|Resource|Region[option]|Usage[option]
     - kangxhnlbea-core
     - kangxhvm-dc
 
 # Identity
 
-    1. Domain registered via godaddy. 
-    2. Onprem DC, kangxh.local, setup in China, 
-    3. AAD Connect to sync to kangxh.com on MSDN. 
-    4. ADFS enabled on China DC
+    1. Onprem DC, kangxh.local
+    2. AAD Connect to sync to kangxh.com on MSDN. 
+    3. AD FS enabled
 
 # DevOps
 
-    1. Use kangxhvmsea-dc to develop web site in WSL2
-    2. Web site hosted on AKS container 
-    3. Static content saved in Azure File 
+    1. github repo: kangxh-xh/kangxh.com
+    2. CICD with github actions.
+    3. Jenkins for practise.
 
 # Architecture
 
-![architecture](azure/kangxh.com-arch.png)
+![architecture](azure/kangxh.com.png)
+
+# Sample Apps
+
+- [application Insight](https://github.com/Azure-Samples/application-insights-aspnet-sample-opentelemetry)
+
+- [Spring Cloud on K8s](https://github.com/Azure-Samples/application-insights-aspnet-sample-opentelemetry)

@@ -85,7 +85,19 @@
     az acr import --name kangxhacrea --resource-group MSFT-RG-Kangxh-AKS --source docker.io/kangzian/ibean.org --image ibean.org:latest 
     kubectl apply -f ibean.org.yaml
 
-##### jenkins
+##### nginx
+
+    kubectl create namespace app
+    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+    
+    helm install nginx-ingress ingress-nginx/ingress-nginx \
+    --namespace app \
+    --set controller.replicaCount=2 \
+    --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.admissionWebhooks.patch.nodeSelector."beta\.kubernetes\.io/os"=linux
+
+###### jenkins
 
     use file share as jenkins storage. as the default access level is 0755, create PV to change it to 0777  
 
@@ -93,3 +105,11 @@
     kubectl apply -f jenkins.pv.yaml
     kubectl apply -f jenkins.yaml
     kubectl exec jenkins-5787bd657f-8hrr9 -- cat /var/jenkins_home/secrets/initialAdminPassword
+
+###### SQL2019
+
+    kubectl create secret generic mssql --from-literal=SA_PASSWORD="defaultdbpassword"
+    kubectl apply -f sqlpvc.yaml
+    kubectl apply -f sql2019.yaml
+
+
