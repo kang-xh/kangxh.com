@@ -45,12 +45,7 @@ data:
 
   prometheus-data-collection-settings: |-
     # Custom Prometheus metrics data collection settings
-    [prometheus_data_collection_settings.cluster] 
-      interval = "1m"  ## Valid time units are s, m, h.
-      fieldpass = ["metric_to_pass1", "metric_to_pass12"] ## specify metrics to pass through 
-      fielddrop = ["metric_to_drop"] ## specify metrics to drop from collecting
-      kubernetes_services = ["http://my-service-dns.my-namespace:9102/metrics"]
-      
+    [prometheus_data_collection_settings.cluster]
         # Cluster level scrape endpoint(s). These metrics will be scraped from agent's Replicaset (singleton)
         # Any errors related to prometheus scraping can be found in the KubeMonAgentEvents table in the Log Analytics workspace that the cluster is sending data to.
 
@@ -102,7 +97,7 @@ data:
     [metric_collection_settings.collect_kube_system_pv_metrics]
       # In the absense of this configmap, default value for collect_kube_system_pv_metrics is false
       # When the setting is set to false, only the persistent volume metrics outside the kube-system namespace will be collected
-      enabled = true
+      enabled = false
       # When this is enabled (enabled = true), persistent volume metrics including those in the kube-system namespace will be collected
 
   alertable-metrics-configuration-settings: |-
